@@ -8,7 +8,7 @@ from enum import Enum
 import time
 import os
 import zipfile
-import datetime
+from datetime import datetime
 
 import yaml
 
