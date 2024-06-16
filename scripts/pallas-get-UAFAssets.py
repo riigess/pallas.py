@@ -258,7 +258,7 @@ if __name__ == "__main__":
                         data = data_store[asset_type_store][train][device][specifier]
                         filepath = f"{asset_type_store}/{train}/{device}/{specifier}/payload.yml"
                         util.write_str_to_yaml(filepath, data)
-                        os.system(f"git add {filepath}")
+                        os.system(f"git add \"{filepath}\"")
         os.system(f"git commit -m \"Regular Updates on {t}\"")
         os.system(f"git push --set-upstream origin {t}/update")
     print("Done.")
