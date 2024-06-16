@@ -214,10 +214,10 @@ if __name__ == "__main__":
     for ostrain in os_trains:
         for asset in asset_audiences:
             print(f"Now checking for {asset.value} on OS {ostrain.value[0]}")
-            if not os.path.exists(f"{root_path}/{ostrain.value[0]}"):
-                os.mkdir(f"{root_path}/{ostrain.value[0]}")
-            if not os.path.exists(f"{root_path}/{ostrain.value[0]}/{device.value}"):
-                os.mkdir(f"{root_path}/{ostrain.value[0]}/{device.value}")
+            # if not os.path.exists(f"{root_path}/{ostrain.value[0]}"):
+            #     os.mkdir(f"{root_path}/{ostrain.value[0]}")
+            # if not os.path.exists(f"{root_path}/{ostrain.value[0]}/{device.value}"):
+            #     os.mkdir(f"{root_path}/{ostrain.value[0]}/{device.value}")
             resp = pallas_request.request(audience, asset, device, ostrain)
             resp = pallas_request.remove_asset_receipts(resp)
             #TODO: Reorganize data by directory tree
