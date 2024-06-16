@@ -77,7 +77,7 @@ class PallasRequest:
             else:
                 raise Exception(f"Error: unformatted type for resp {type(resp)}")
         else:
-            print(resp.status_code, resp.text)
+            print(resp)
             raise Exception("Unhandled data format")
     
     def save_json_to_file(self, data:dict, filename:str):
