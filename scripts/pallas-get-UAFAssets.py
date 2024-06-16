@@ -292,8 +292,8 @@ if __name__ == "__main__":
                 print(resp)
             
             #TODO: Publish to Github through the API given the zip file
-            if 'Status' not in resp:
-                pallas_request.save_json_to_file(resp, f"{root_path}/{ostrain.value[0]}/{device.value}/{asset.value}.json")
+            # if 'Status' not in resp:
+            #     pallas_request.save_json_to_file(resp, f"{root_path}/{ostrain.value[0]}/{device.value}/{asset.value}.json")
             time.sleep(sleep_time)
 
     util = Util()
