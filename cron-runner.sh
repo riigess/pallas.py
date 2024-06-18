@@ -1,6 +1,7 @@
 #!/bin/bash
-absolutepath=$(dirname "$0")
-cd $absolutepath
+cd "$(dirname $0)"
+echo "Switched to path $(dirname $0)"
 git pull
 cd ..
-/usr/bin/python3 UAFAssets-updater/scripts/pallas-get-UAFAssets.py
+git pull
+/usr/bin/python3 UAFAssets-Updater/scripts/pallas-get-UAFAssets.py
