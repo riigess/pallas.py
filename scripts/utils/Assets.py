@@ -14,3 +14,10 @@ class Assets(Enum):
     UAFSiriUnderstandingNLOverrides = "com.apple.MobileAsset.UAF.Siri.UnderstandingNLOverrides"
     UAFSpeechASR = "com.apple.MobileAsset.UAF.Speech.AutomaticSpeechRecognition"
     UAFSummarizationKit = "com.apple.MobileAsset.UAF.SummarizationKitConfiguration"
+
+    def all_assets() -> dict:
+        to_return = {}
+        for item in Assets.__dict__:
+            if "UAF" in item:
+                to_return.update({item: Assets.__dict__[item]})
+        return to_return
