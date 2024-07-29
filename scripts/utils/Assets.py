@@ -14,6 +14,8 @@ class Assets(Enum):
     UAFSiriUnderstandingNLOverrides = "com.apple.MobileAsset.UAF.Siri.UnderstandingNLOverrides"
     UAFSpeechASR = "com.apple.MobileAsset.UAF.Speech.AutomaticSpeechRecognition"
     UAFSummarizationKit = "com.apple.MobileAsset.UAF.SummarizationKitConfiguration"
+    UAFIFPlanner = "com.apple.if.planner"
+    UAFIFPlannerOverrides = "com.apple.if.planner.overrides"
 
     def all_assets() -> dict:
         to_return = {}
