@@ -1,4 +1,3 @@
-import ssl
 import time
 import os
 from datetime import datetime
@@ -41,10 +40,6 @@ if __name__ == "__main__":
     # Only need to get A and E Trains for iPhone to get all asset info.
     # - This is len(asset_audience) * len(os_trains) = ~50 requests over about 3 minutes (Not including how long it takes for Pallas to respond)
     asset_audiences = Assets.all_assets()
-    # asset_audiences = {
-    #     Assets.UAFIFPlanner.value: Assets.UAFIFPlanner,
-    #     Assets.UAFIFPlannerOverrides.value: Assets.UAFIFPlannerOverrides
-    # }
     os_trains = [
         OSTrainDevicePair.GlowSeed,
         OSTrainDevicePair.GlowESeed
