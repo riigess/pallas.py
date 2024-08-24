@@ -1,16 +1,15 @@
-
 import time
 import os
 from datetime import datetime
 
 import yaml
 
-from utils.Assets import Assets
-from utils.AudienceLookups import AudienceLookups
-from utils.DeviceType import DeviceType
-from utils.OSTrainDevicePair import OSTrainDevicePair
-from utils.PallasRequest import PallasRequest
-from utils.FileManager import FileManager as Util
+from core.Assets import Assets
+from core.AudienceLookups import AudienceLookups
+from core.DeviceType import DeviceType
+from core.OSTrainDevicePair import OSTrainDevicePair
+from core.PallasRequest import PallasRequest
+from core.FileManager import FileManager as Util
 
 if __name__ == "__main__":
     pallas_url = 'https://gdmf.apple.com/v2/assets'
@@ -36,14 +35,15 @@ if __name__ == "__main__":
             pair = OSTrainDevicePair.__dict__[train]
             os_train_lookup.update({pair.value[1]: pair.value[0]})
 
-    root_path = "raw"
-
-    audience = AudienceLookups.ios_generic
-    device = DeviceType.iPhone
+    audience = AudienceLookups.macos_generic
+    device = DeviceType.Mac
     # Only need to get A and E Trains for iPhone to get all asset info.
     # - This is len(asset_audience) * len(os_trains) = ~50 requests over about 3 minutes (Not including how long it takes for Pallas to respond)
     asset_audiences = Assets.all_assets()
-    os_trains = [OSTrainDevicePair.DawnESeed, OSTrainDevicePair.CrystalSeed, OSTrainDevicePair.CrystalESeed]
+    os_trains = [
+        OSTrainDevicePair.GlowSeed,
+        OSTrainDevicePair.GlowESeed
+    ]
     print("Asset audiences:", asset_audiences)
 
     for ostrain in os_trains:
@@ -52,10 +52,6 @@ if __name__ == "__main__":
             print(f"ostrain: {ostrain.value}")
             print(f"asset: {asset}")
             print(f"Now checking for {asset.value} on OS {ostrain.value[0]}")
-            # if not os.path.exists(f"{root_path}/{ostrain.value[0]}"):
-            #     os.mkdir(f"{root_path}/{ostrain.value[0]}")
-            # if not os.path.exists(f"{root_path}/{ostrain.value[0]}/{device.value}"):
-            #     os.mkdir(f"{root_path}/{ostrain.value[0]}/{device.value}")
             resp = pallas_request.request(audience, asset, device, ostrain)
             resp = pallas_request.remove_asset_receipts(resp)
             #TODO: Reorganize data by directory tree
@@ -95,11 +91,14 @@ if __name__ == "__main__":
                     #Determine OS Train name (device-specific train name)
                     if '_OSVersionCompatibilities' in resp_asset:
                         if device_name != 'generic':
-                            version_number = resp_asset['_OSVersionCompatibilities'][device_name]['_MinOSVersion'].split('.')
-                            if len(version_number) > 2:
-                                version_number = version_number[:2]
-                            version_number = '.'.join(version_number)
-                            train_name = os_train_lookup[version_number]
+                            if device_name in resp_asset['_OSVersionCompatibilities']:
+                                version_number = resp_asset['_OSVersionCompatibilities'][device_name]['_MinOSVersion'].split('.')
+                                if len(version_number) > 2:
+                                    version_number = version_number[:2]
+                                version_number = '.'.join(version_number)
+                                train_name = os_train_lookup[version_number]
+                            else:
+                                continue
                         else:
                             version_number = resp_asset['_OSVersionCompatibilities']['iPhone']['_MinOSVersion'].split('.')
                             if len(version_number) > 2:
