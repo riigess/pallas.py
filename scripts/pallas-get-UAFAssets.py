@@ -5,12 +5,12 @@ from datetime import datetime
 
 import yaml
 
-from utils.Assets import Assets
-from utils.AudienceLookups import AudienceLookups
-from utils.DeviceType import DeviceType
-from utils.OSTrainDevicePair import OSTrainDevicePair
-from utils.PallasRequest import PallasRequest
-from utils.FileManager import FileManager as Util
+from pallas.utils.UAFAssets import Assets
+from pallas.utils.Audience import AudienceLookups
+from pallas.utils.DeviceType import DeviceType
+from pallas.utils.OSTrainDevicePair import OSTrainDevicePair
+from pallas.utils.PallasRequest import PallasRequest
+from pallas.utils.FileManager import FileManager as Util
 
 if __name__ == "__main__":
     pallas_url = 'https://gdmf.apple.com/v2/assets'

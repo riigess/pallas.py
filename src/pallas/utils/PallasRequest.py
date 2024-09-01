@@ -5,10 +5,10 @@ import base64
 import http.client
 import urllib.parse
 
-from utils.Assets import Assets
-from utils.AudienceLookups import AudienceLookups
-from utils.DeviceType import DeviceType
-from utils.OSTrainDevicePair import OSTrainDevicePair
+from pallas.utils.UAFAssets import Assets
+from pallas.utils.Audience import AudienceLookups
+from pallas.utils.DeviceType import DeviceType
+from pallas.utils.OSTrainDevicePair import OSTrainDevicePair
 
 class PallasRequest:
     def __init__(self, url:str = "https://gdmf.apple.com/v2/assets"):
