@@ -88,5 +88,4 @@ class Asset:
                 f.write(req.content)
         elif req.status_code != 200:
             raise RuntimeError(f"Status Code {req.status_code} - please validate the URL provided for asset. {self.url}")
-        elif not to_file:
-            return req.text
+        return req.text
