@@ -28,4 +28,4 @@ Repository = "https://github.com/Riigess/UAFAssets-Updater"
 Issues = "https://github.com/Riigess/UAFAssets-Updater/issues"
 
 [build-system]
-requires = ["setuptools", "pyyaml"]
+requires = ["setuptools", "pyyaml", "requests", "certifi", "charset_normalizer", "idna", "urllib3"]

@@ -1,3 +1,5 @@
+import requests
+
 from pallas.utils.DeviceType import DeviceType
 
 class VersionIdentifier:
@@ -78,3 +80,13 @@ class Asset:
         self.version = VersionIdentifier(a_dict.get("version", "1.0.0"))
         self.ramp = a_dict.get("Ramp", False)
         self._OSVersionCompatibilities = VersionCompatibilities(a_dict.get("_OSVersionCompatibilities", {}))
+    
+    def download(self, to_file:str=None) -> str:
+        req = requests.get(self.url)
+        if to_file and req.status_code == 200:
+            with open(to_file, 'wb') as f:
+                f.write(req.content)
+        elif req.status_code != 200:
+            raise RuntimeError(f"Status Code {req.status_code} - please validate the URL provided for asset. {self.url}")
+        elif not to_file:
+            return req.text
