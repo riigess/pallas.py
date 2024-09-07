@@ -1,7 +1,6 @@
-from pallas.utils.UAFAssets import UAFAssets
 from enum import Enum
 
-class Assets(UAFAssets, Enum):
+class Assets(Enum):
     AppleKeyServicesCRL2 = "com.apple.MobileAsset.AppleKeyServicesCRL2"
     CombinedVocalizerVoices = "com.apple.MobileAsset.VoiceServices.CombinedVocalizerVoices"
     ComfortSoundsAssets = "com.apple.MobileAsset.ComfortSoundsAssets"
