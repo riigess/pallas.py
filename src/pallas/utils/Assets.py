@@ -17,6 +17,7 @@ class Assets(Enum):
     GeoPolygonDataAssets = "com.apple.MobileAsset.GeoPolygonDataAssets"
     ImageCaptionModel = "com.apple.MobileAsset.ImageCaptionModel"
     IntelligentRouting = "com.apple.MobileAsset.IntelligentRouting"
+    iPhoneSoftwareUpdate = "com.apple.MobileAsset.iPhoneSoftwareUpdate" #Unsure, referencing format for MacSoftwareUpdate
     KextDenyList = "com.apple.MobileAsset.KextDenyList"
     LinguisticData = "com.apple.MobileAsset.LinguisticData"
     LinguisticDataAuto = "com.apple.MobileAsset.LinguisticDataAuto"
@@ -43,6 +44,36 @@ class Assets(Enum):
     UARP_A2452 = "com.apple.MobileAsset.UARP.A2452"
     UARP_A2515 = "com.apple.MobileAsset.UARP.A2515"
     UARP_A2618 = "com.apple.MobileAsset.UARP.A2618"
+    WatchSoftwareUpdate = "com.apple.MobileAsset.WatchSoftwareUpdate" #Unsure, referencing format for MacSoftwareUpdate
     VideoAppsMusicAssets3 = "com.apple.MobileAsset.VideoAppsMusicAssets3"
     VoiceTriggerAssetsASMac = "com.apple.MobileAsset.VoiceTriggerAssetsASMac"
     VoiceTriggerAssetsStudioDisplay = "com.apple.MobileAsset.VoiceTriggerAssetsStudioDisplay"
+
+    def all_assets() -> list:
+        to_return = []
+        for key in Assets.__dict__["_member_names_"]:
+            to_return.append(UAFAssets.__dict__[key])
+        return to_return
+
+class UAFAssets(Enum):
+    FMOverrides = "com.apple.MobileAsset.UAF.FM.Overrides"
+    FMCodeLM = "com.apple.MobileAsset.UAF.FM.CodeLM"
+    FMGenerativeModels = "com.apple.MobileAsset.UAF.FM.GenerativeModels"
+    HandwritingSynthesis = "com.apple.MobileAsset.UAF.Handwriting.Synthesis"
+    SafariBrowsingAssistant = "com.apple.MobileAsset.UAF.SafariBrowsingAssistant"
+    SiriDialogAssets = "com.apple.MobileAsset.UAF.Siri.DialogAssets"
+    SiriFindMy = "com.apple.MobileAsset.UAF.Siri.FindMyConfigurationFiles"
+    SiriPlatformAssets = "com.apple.MobileAsset.UAF.Siri.PlatformAssets"
+    SiriUnderstanding = "com.apple.MobileAsset.UAF.Siri.Understanding"
+    SiriUnderstandingASRHammer = "com.apple.MobileAsset.UAF.Siri.UnderstandingASRHammer"
+    SiriUnderstandingNLOverrides = "com.apple.MobileAsset.UAF.Siri.UnderstandingNLOverrides"
+    SpeechASR = "com.apple.MobileAsset.UAF.Speech.AutomaticSpeechRecognition"
+    SummarizationKit = "com.apple.MobileAsset.UAF.SummarizationKitConfiguration"
+    IFPlanner = "com.apple.if.planner"
+    IFPlannerOverrides = "com.apple.if.planner.overrides"
+
+    def all_assets() -> list:
+        to_return = []
+        for key in UAFAssets.__dict__["_member_names_"]:
+            to_return.append(UAFAssets.__dict__[key])
+        return to_return

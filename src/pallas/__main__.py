@@ -1,9 +1,10 @@
 import argparse
+from typing import Union
 import os
 
+from pallas.asset import Asset
 from pallas.utils.DeviceType import DeviceType
-from pallas.utils.Assets import Assets
-from pallas.utils.UAFAssets import UAFAssets
+from pallas.utils.Assets import Assets, UAFAssets
 from pallas.utils.Audience import Audience
 from pallas.utils.OSTrainDevicePair import OSTrainDevicePair
 from pallas.actions.Fetching import Fetching
@@ -17,33 +18,47 @@ def main_argparse():
     parser.add_argument("--custom", "-c", default="", help="Fetches custom body data provided by you! 😁")
     parser.add_argument("--ios", "-i", default=False, action="store_true", help="--custom (-c) is required for this flag to be available | ")
     parser.add_argument("--mac", "-m", default=False, action="store_true", help="")
-    parser.add_argument("--apple-tv", "-t", default=False, action="store_true", help="")
+    parser.add_argument("--apple-tv", "--tv", default=False, action="store_true", help="")
     parser.add_argument("--vision-pro", "--vision-os", "--xros", "-p", default=False, action="store_true", help="")
-    parser.add_argument("--apple-watch", "-w", default=False, action="store_true", help="")
+    parser.add_argument("--apple-watch", "--watch", "-w", default=False, action="store_true", help="")
     return parser.parse_known_args()
 
 def get_uaf_assets() -> dict:
     return {
-        DeviceType.iPhone: {
-            "OS": OSTrainDevicePair.DawnESeed,
+        OSTrainDevicePair.DawnESeed: {
+            "Device": DeviceType.iPhone,
             "Audience": Audience.ios_generic,
             "Assets": [
-                Assets.SiriDialogAssets,
-                Assets.SiriFindMy,
-                Assets.SiriPlatformAssets,
-                Assets.SiriUnderstanding,
-                Assets.SiriUnderstandingASRHammer,
-                Assets.SiriUnderstandingNLOverrides
+                UAFAssets.SiriDialogAssets,
+                UAFAssets.SiriFindMy,
+                UAFAssets.SiriPlatformAssets,
+                UAFAssets.SiriUnderstanding,
+                UAFAssets.SiriUnderstandingASRHammer,
+                UAFAssets.SiriUnderstandingNLOverrides
             ]
         },
-        DeviceType.Mac: {
-            "OS": OSTrainDevicePair.GlowSeed,
+        OSTrainDevicePair.CrystalSeed: {
+            "Device": DeviceType.Mac,
             "Audience": Audience.macos_generic,
             "Assets": Assets.all_assets()
         }
     }
 
-def append_assets(assets:list[Assets], file_name:str) -> bool:
+def get_assets(assets:dict, key:OSTrainDevicePair):
+    otdp = assets[key]
+    device = otdp["Device"]
+    if device == DeviceType.iPhone or DeviceType.iPad:
+        return fetch.get_ios_asset_group(assets=otdp["Assets"], os_train=key)
+    elif device == DeviceType.Mac:
+        return fetch.get_macos_asset_group(assets=otdp["Assets"], os_train=key)
+    elif device == DeviceType.TV:
+        return fetch.get_tvos_asset_group(assets=otdp["Assets"], os_train=key)
+    elif device == DeviceType.Watch:
+        return fetch.get_watchos_asset_group(assets=otdp["Assets"], os_train=key)
+    else:
+        raise RuntimeError("Error, unknown device provided please review __main__.py:get_assets(list[Assets],OSTrainDevicePair)")
+
+def append_assets(assets:list[Asset], file_name:str) -> bool:
     store = Saving(file_name)
     if not store.sqlite_exists():
         store.configure_sqlite()
@@ -58,33 +73,15 @@ if __name__ == "__main__":
     sqlite_file = f"{os.getcwd()}/database.sqlite"
     if args[0].unified_asset_framework:
         #Setup Variables
-        assets = {
-            DeviceType.iPhone: {
-                "OS": OSTrainDevicePair.DawnESeed,
-                "Audience": Audience.ios_generic,
-                "Assets": [
-                    UAFAssets.SiriDialogAssets,
-                    UAFAssets.SiriFindMy,
-                    UAFAssets.SiriPlatformAssets,
-                    UAFAssets.SiriUnderstanding,
-                    UAFAssets.SiriUnderstandingASRHammer,
-                    UAFAssets.SiriUnderstandingNLOverrides
-                ]
-            },
-            DeviceType.Mac: {
-                "OS": OSTrainDevicePair.GlowSeed,
-                "Audience": Audience.macos_generic,
-                "Assets": UAFAssets.all_assets()
-            }
-        }
+        assets = get_uaf_assets()
         pallas_resp = []
-        
+
         #Fetch Assets
         print("Fetching iOS 17-aligned Assets:", end=' ')
-        pallas_resp += fetch.get_ios_asset_group(assets=assets[DeviceType.iPhone], os_train=OSTrainDevicePair.DawnESeed)
+        pallas_resp += get_assets(assets, OSTrainDevicePair.DawnESeed)
         temp = len(pallas_resp)
         print(f"{temp} assets.\n\nFetching iOS 18-aligned Assets:", end=' ')
-        pallas_resp += fetch.get_macos_asset_group(assets=assets[DeviceType.Mac], os_train=OSTrainDevicePair.CrystalSeed)
+        pallas_resp += get_assets(assets, OSTrainDevicePair.CrystalSeed)
         print(f"{len(pallas_resp) - temp} assets.\nDone.\n")
 
         #Store assets
@@ -92,17 +89,17 @@ if __name__ == "__main__":
         append_assets(pallas_resp, sqlite_file)
     elif args[0].software_update:
         mac_su = Assets.MacSoftwareUpdate
-        mac_su_asset = fetch.get_macos_asset(asset=mac_su, os_train=OSTrainDevicePair.GlowSeed)
+        mac_su_asset = fetch.get_macos_asset(asset=mac_su, os_train=OSTrainDevicePair.GlowSeed).assets[0]
         ios_su = Assets.iPhoneSoftwareUpdate
-        ios_su_asset = fetch.get_ios_asset(asset=ios_su, os_train=OSTrainDevicePair.CrystalSeed)
+        ios_su_asset = fetch.get_ios_asset(asset=ios_su, os_train=OSTrainDevicePair.CrystalSeed).assets[0]
         # tv_su = Assets.TVSoftwareUpdate
         # tv_su_asset = fetch.get_tvos_asset(asset=tv_su, os_train=OSTrainDevicePair.Null)
         watch_su = Assets.WatchSoftwareUpdate
-        watch_su_asset = fetch.get_watchos_asset(asset=watch_su, os_train=OSTrainDevicePair.MoonstoneSeed)
+        watch_su_asset = fetch.get_watchos_asset(asset=watch_su, os_train=OSTrainDevicePair.MoonstoneSeed).assets[0]
         append_assets(assets=[mac_su_asset, ios_su_asset, watch_su_asset], file_name=sqlite_file)
     elif args[0].timezone:
         tz_update = Assets.TimeZoneUpdate
-        tz_resp = fetch.get_macos_asset(asset=tz_update, os_train=OSTrainDevicePair.CrystalSeed)
+        tz_resp = fetch.get_macos_asset(asset=tz_update, os_train=OSTrainDevicePair.CrystalSeed).assets[0]
         append_assets(assets=[tz_resp], file_name=sqlite_file)
         print()
     elif args[0].custom:

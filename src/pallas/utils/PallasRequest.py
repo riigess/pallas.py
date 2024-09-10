@@ -1,12 +1,15 @@
 import urllib
 import json
+import ssl
 from io import BytesIO
 import base64
 import http.client
 import urllib.parse
+from typing import Union
 
-from pallas.utils.UAFAssets import Assets
-from pallas.utils.Audience import AudienceLookups
+from pallas.utils.Assets import Assets
+from pallas.utils.Assets import UAFAssets
+from pallas.utils.Audience import Audience
 from pallas.utils.DeviceType import DeviceType
 from pallas.utils.OSTrainDevicePair import OSTrainDevicePair
 
@@ -49,8 +52,8 @@ class PallasRequest:
         to_return = resp_body.read().decode('utf-8')
         conn.close()
         return to_return
-    
-    def request(self, asset_audience:AudienceLookups, asset_type:Assets, device_type:DeviceType, train_name:OSTrainDevicePair) -> dict:
+
+    def request(self, asset_audience:Audience, asset_type:Union[Assets, UAFAssets], device_type:DeviceType, train_name:OSTrainDevicePair) -> dict:
         body = {
             "AssetAudience": asset_audience.value, #This can be changed to fit other deviceTypes
             "ClientVersion": 2,
@@ -72,11 +75,11 @@ class PallasRequest:
         else:
             print(resp)
             raise Exception("Unhandled data format")
-    
+
     def save_json_to_file(self, data:dict, filename:str):
         with open(filename, 'w') as f:
             f.write(json.dumps(data, indent=4, separators=(',',':')))
-    
+
     def remove_asset_receipts(self, data:dict) -> dict:
         if 'Assets' in data:
             for asset in data['Assets']:
