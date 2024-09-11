@@ -1,5 +1,5 @@
 from enum import Enum
-from utils.DeviceType import DeviceType
+from pallas.utils.DeviceType import DeviceType
 
 class OSTrainDevicePair(Enum):
     DawnSeed = "DawnSeed", "17.0", DeviceType.iPhone, DeviceType.iPad

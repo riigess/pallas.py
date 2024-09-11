@@ -1,0 +1,79 @@
+from enum import Enum
+
+class Assets(Enum):
+    AppleKeyServicesCRL2 = "com.apple.MobileAsset.AppleKeyServicesCRL2"
+    CombinedVocalizerVoices = "com.apple.MobileAsset.VoiceServices.CombinedVocalizerVoices"
+    ComfortSoundsAssets = "com.apple.MobileAsset.ComfortSoundsAssets"
+    CustomVoice = "com.apple.MobileAsset.VoiceServices.CustomVoice"
+    ContextKit = "com.apple.MobileAsset.ContextKit"
+    CoreSuggestions = "com.apple.MobileAsset.CoreSuggestions"
+    CoreSuggestionsModels = "com.apple.MobileAsset.CoreSuggestionsModels"
+    DarwinAccessoryUpdate_A2525 = "com.apple.MobileAsset.DarwinAccessoryUpdate.A2525"
+    DesktopPicture = "com.apple.MobileAsset.DesktopPicture"
+    DictionaryOSX = "com.apple.MobileAsset.DictionaryServices.dictionaryOSX"
+    Font7 = "com.apple.MobileAsset.Font7"
+    GameController_DB1 = "com.apple.MobileAsset.GameController.DB1"
+    GamePolicy_DB1 = "com.apple.MobileAsset.GamePolicy.DB1"
+    GeoPolygonDataAssets = "com.apple.MobileAsset.GeoPolygonDataAssets"
+    ImageCaptionModel = "com.apple.MobileAsset.ImageCaptionModel"
+    IntelligentRouting = "com.apple.MobileAsset.IntelligentRouting"
+    iPhoneSoftwareUpdate = "com.apple.MobileAsset.iPhoneSoftwareUpdate" #Unsure, referencing format for MacSoftwareUpdate
+    KextDenyList = "com.apple.MobileAsset.KextDenyList"
+    LinguisticData = "com.apple.MobileAsset.LinguisticData"
+    LinguisticDataAuto = "com.apple.MobileAsset.LinguisticDataAuto"
+    MacSoftwareUpdate = "com.apple.MobileAsset.MacSoftwareUpdate"
+    MacSplatSoftwareUpdate = "com.apple.MobileAsset.MacSplatSoftwareUpdate"
+    MacinTalkVoiceAssets = "com.apple.MobileAsset.MacinTalkVoiceAssets"
+    MediaSupport = "com.apple.MobileAsset.MediaSupport"
+    NetworkNomicon = "com.apple.MobileAsset.network.networknomicon"
+    MobileAccessoryUpdate_A2096_EA = "com.apple.MobileAsset.MobileAccessoryUpdate.A2096.EA"
+    MobileAssetBrain = "com.apple.MobileAsset.MobileAssetBrain"
+    OSEligibility = "com.apple.MobileAsset.OSEligibility"
+    PKITrustSupplementals = "com.apple.MobileAsset.PKITrustSupplementals"
+    PhotosCuratedMusicLibraryAsset = "com.apple.MobileAsset.PhotosCuratedMusicLibraryAsset"
+    ProactiveEventTrackerAssets = "com.apple.MobileAsset.ProactiveEventTrackerAssets"
+    SecExperimentAssets = "com.apple.MobileAsset.SecExperimentAssets"
+    SourceEditorAssets = "com.apple.MobileAsset.SourceEditorAssets"
+    SpeechTranslationAssets6 = "com.apple.MobileAsset.SpeechTranslationAssets6"
+    SpotlightResources = "com.apple.MobileAsset.SpotlightResources"
+    TTSAXResourceModelAssets = "com.apple.MobileAsset.TTSAXResourceModelAssets"
+    TimeZoneUpdate = "com.apple.MobileAsset.TimeZoneUpdate"
+    TopLevelDomainDafsa = "com.apple.MobileAsset.TopLevelDomainDafsa"
+    PhoneNumberResolver = "com.apple.MobileAsset.phoneNumberResolver"
+    UARP_A2363 = "com.apple.MobileAsset.UARP.A2363"
+    UARP_A2452 = "com.apple.MobileAsset.UARP.A2452"
+    UARP_A2515 = "com.apple.MobileAsset.UARP.A2515"
+    UARP_A2618 = "com.apple.MobileAsset.UARP.A2618"
+    WatchSoftwareUpdate = "com.apple.MobileAsset.WatchSoftwareUpdate" #Unsure, referencing format for MacSoftwareUpdate
+    VideoAppsMusicAssets3 = "com.apple.MobileAsset.VideoAppsMusicAssets3"
+    VoiceTriggerAssetsASMac = "com.apple.MobileAsset.VoiceTriggerAssetsASMac"
+    VoiceTriggerAssetsStudioDisplay = "com.apple.MobileAsset.VoiceTriggerAssetsStudioDisplay"
+
+    def all_assets() -> list:
+        to_return = []
+        for key in Assets.__dict__["_member_names_"]:
+            to_return.append(UAFAssets.__dict__[key])
+        return to_return
+
+class UAFAssets(Enum):
+    FMOverrides = "com.apple.MobileAsset.UAF.FM.Overrides"
+    FMCodeLM = "com.apple.MobileAsset.UAF.FM.CodeLM"
+    FMGenerativeModels = "com.apple.MobileAsset.UAF.FM.GenerativeModels"
+    HandwritingSynthesis = "com.apple.MobileAsset.UAF.Handwriting.Synthesis"
+    SafariBrowsingAssistant = "com.apple.MobileAsset.UAF.SafariBrowsingAssistant"
+    SiriDialogAssets = "com.apple.MobileAsset.UAF.Siri.DialogAssets"
+    SiriFindMy = "com.apple.MobileAsset.UAF.Siri.FindMyConfigurationFiles"
+    SiriPlatformAssets = "com.apple.MobileAsset.UAF.Siri.PlatformAssets"
+    SiriUnderstanding = "com.apple.MobileAsset.UAF.Siri.Understanding"
+    SiriUnderstandingASRHammer = "com.apple.MobileAsset.UAF.Siri.UnderstandingASRHammer"
+    SiriUnderstandingNLOverrides = "com.apple.MobileAsset.UAF.Siri.UnderstandingNLOverrides"
+    SpeechASR = "com.apple.MobileAsset.UAF.Speech.AutomaticSpeechRecognition"
+    SummarizationKit = "com.apple.MobileAsset.UAF.SummarizationKitConfiguration"
+    IFPlanner = "com.apple.if.planner"
+    IFPlannerOverrides = "com.apple.if.planner.overrides"
+
+    def all_assets() -> list:
+        to_return = []
+        for key in UAFAssets.__dict__["_member_names_"]:
+            to_return.append(UAFAssets.__dict__[key])
+        return to_return
