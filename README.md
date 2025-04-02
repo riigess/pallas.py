@@ -1,4 +1,4 @@
-# pallas-request
+# pallas.py
 
 A library to support making requests to Apple's Pallas server (gdmf.apple.com and mesu.apple.com). More info on [The Apple Wiki](https://theapplewiki.com/wiki/MobileAsset).
 
@@ -31,9 +31,9 @@ $ pallas-request -h
 
 I don't take any responsibility for your use of this library. This is **purely** for educational purposes only.
 
--   [@Nicolás17](https://github.com/nicolas17) for providing insights on [pallas-archive](https://gitlab.com/nicolas17/pallas-archive) over on gitlab
--   [@r00tfs](https://github.com/R00tFS) and [@dhinakg](https://github.com/dhinakg) for validating the work and making sure I'm not backtracking the entire way through the project (sanity checking is always good)
--   [@Siguza](https://github.com/Siguza) Bruh called me ChatGPT, so I had to finish the project. Betting he's still labeling me as nothing more than ChatGPT..
+- [@Nicolás17](https://github.com/nicolas17) for providing insights on [pallas-archive](https://gitlab.com/nicolas17/pallas-archive) over on gitlab
+- [@r00tfs](https://github.com/R00tFS) and [@dhinakg](https://github.com/dhinakg) for validating the work and making sure I'm not backtracking the entire way through the project (sanity checking is always good)
+- [@Siguza](https://github.com/Siguza) Bruh called me ChatGPT, so I had to finish the project. Betting he's still labeling me as nothing more than ChatGPT..
 
 ## Notes
 
@@ -121,12 +121,12 @@ Please note that if you make a request given the above format only will result i
 
 This is (almost) a real partial from a response for an NLOverrides with locale en_GB. A few of the keys will be modified but should still be present in the final response as well.
 
--   `PallasNonce` has been replaced with periods (`.`) to represent an alphanumeric character equal to the length of the original string in place.
--   `_OSVersionCompatibilities` has been truncated to remove all capable devices
--   `_UnarchivedSize` has been truncated to represent a positive integer response
--   `_Measurement` is typically a String equal to the (\_MeasurementAlgorithm) hash of the asset after downloading
--   `__BaseURL` and `__RelativePath` have both been removed to not point to a specific URL to download this version
--   `_DecryptionKey` and `_DecryptionKeyFile` have both been removed to display the keys with no specific significance being brought to accessing the asset in this example
--   `AssetFormat` can be either "AppleArchive" or "AppleEncryptedArchive", usually expect "AppleArchive" here
+- `PallasNonce` has been replaced with periods (`.`) to represent an alphanumeric character equal to the length of the original string in place.
+- `_OSVersionCompatibilities` has been truncated to remove all capable devices
+- `_UnarchivedSize` has been truncated to represent a positive integer response
+- `_Measurement` is typically a String equal to the (\_MeasurementAlgorithm) hash of the asset after downloading
+- `__BaseURL` and `__RelativePath` have both been removed to not point to a specific URL to download this version
+- `_DecryptionKey` and `_DecryptionKeyFile` have both been removed to display the keys with no specific significance being brought to accessing the asset in this example
+- `AssetFormat` can be either "AppleArchive" or "AppleEncryptedArchive", usually expect "AppleArchive" here
 
 Everything else usually matches formatting at least.

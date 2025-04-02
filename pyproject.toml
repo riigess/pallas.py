@@ -1,12 +1,23 @@
 [project]
 name = "pallas"
 readme = "README.md"
-license = {file = "LICENSE"}
+license = { file = "LICENSE" }
 requires-python = ">= 3.9"
-keywords = ["apple", "pallas", "mobiledevice", "mobile device", "ios", "macos", "siri", "tvos", "xros", "visionos"]
+keywords = [
+    "apple",
+    "pallas",
+    "mobiledevice",
+    "mobile device",
+    "ios",
+    "macos",
+    "siri",
+    "tvos",
+    "xros",
+    "visionos",
+]
 version = "2024.08.30"
 authors = [
-    {name = "@Riigess", email = "56428356+Riigess@users.noreply.github.com"}
+    { name = "@Riigess", email = "56428356+Riigess@users.noreply.github.com" },
 ]
 classifiers = [
     "Topic :: Software Development :: Libraries",
@@ -19,13 +30,21 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3.14"
+    "Programming Language :: Python :: 3.14",
 ]
 
 [project.urls]
-Documentation = "https://github.com/Riigess/UAFAssets-updater/tree/library/docs"
-Repository = "https://github.com/Riigess/UAFAssets-Updater"
-Issues = "https://github.com/Riigess/UAFAssets-Updater/issues"
+Documentation = "https://github.com/Riigess/pallas.py/tree/library/docs"
+Repository = "https://github.com/Riigess/pallas.py"
+Issues = "https://github.com/Riigess/pallas.py/issues"
 
 [build-system]
-requires = ["setuptools", "pyyaml", "requests", "certifi", "charset_normalizer", "idna", "urllib3"]
+requires = [
+    "setuptools",
+    "pyyaml",
+    "requests",
+    "certifi",
+    "charset_normalizer",
+    "idna",
+    "urllib3",
+]
