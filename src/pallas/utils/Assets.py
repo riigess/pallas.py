@@ -71,6 +71,10 @@ class UAFAssets(Enum):
     SummarizationKit = "com.apple.MobileAsset.UAF.SummarizationKitConfiguration"
     IFPlanner = "com.apple.if.planner"
     IFPlannerOverrides = "com.apple.if.planner.overrides"
+    IPComputeHammer = "com.apple.intelligenceplatform.IntelligencePlatformComputeService.hammer"
+    IPComputeAssistant = "com.apple.intelligenceplatform.IntelligencePlatformComputeService.assistant"
+    UAFPlatform = "com.apple.siri.uaf.platform" #TODO: Create generic "No locale" asset flags
+
 
     def all_assets() -> list:
         to_return = []

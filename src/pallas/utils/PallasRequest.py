@@ -7,6 +7,8 @@ import http.client
 import urllib.parse
 from typing import Union
 
+import requests
+
 from pallas.utils.Assets import Assets
 from pallas.utils.Assets import UAFAssets
 from pallas.utils.Audience import Audience
@@ -20,38 +22,31 @@ class PallasRequest:
             "Content-Type": "application/json"
         }
 
-    def _modify_response(self, resp):
-        content_type = resp.getheader('content-type')
+    def _modify_response(self, resp) -> tuple[str,int]:
+        content_type = None
+        if 'Content-Type' in resp.headers:
+            content_type = resp.headers['Content-Type']
         if content_type and 'application/json' in content_type:
-            body_bytes = resp.read()
-            body_str = body_bytes.decode('utf-8')
+            body_str = resp.text
+            decoded_jwt_body = ""
             if body_str.startswith('e'):
                 jwt_body = body_str.split('.')[1]
-                decoded_jwt_body = base64.urlsafe_b64decode(jwt_body + '==')
-                body_bytes = decoded_jwt_body
-            resp_body = BytesIO(body_bytes)
-            return resp_body, len(body_bytes)
-        else:
-            return BytesIO(resp.read()), resp.length
+                decoded_jwt_body = str(base64.urlsafe_b64decode(jwt_body + '=='))[2:-1]
+            return decoded_jwt_body, len(decoded_jwt_body)
+        return "", 0
 
     def make_post_request(self, body:str):
-        url_parts = urllib.parse.urlsplit(self.url)
-        conn = http.client.HTTPSConnection(url_parts.netloc, context=ssl._create_unverified_context())
-
         headers = {
             "Host": "gdmf.apple.com",
             "Content-Length": str(len(body))
         }
         headers.update(self.headers) #Update with existing headers
-
-        conn.request("POST", url_parts.path, body=body, headers=headers)
-        resp = conn.getresponse()
-
-        resp_body, length = self._modify_response(resp)
-
-        to_return = resp_body.read().decode('utf-8')
-        conn.close()
-        return to_return
+        resp = requests.post(self.url, data=body, headers=headers, verify=False)
+        if resp.status_code == 200:
+            resp_body, length = self._modify_response(resp)
+            if len(resp_body) == length:
+                return resp_body
+        return f"[ERR] [HTTP {resp.status_code}] {resp.text}"
 
     def request(self, asset_audience:Audience, asset_type:Union[Assets, UAFAssets], device_type:DeviceType, train_name:OSTrainDevicePair) -> dict:
         body = {

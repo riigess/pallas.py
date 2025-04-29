@@ -15,7 +15,7 @@ keywords = [
     "xros",
     "visionos",
 ]
-version = "2024.08.30"
+version = "2025.04.29"
 authors = [
     { name = "@Riigess", email = "56428356+Riigess@users.noreply.github.com" },
 ]

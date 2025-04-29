@@ -8,8 +8,8 @@ Using pip
 
 ```bash
 cd ~/Downloads/
-mkdir pallas-request && cd pallas-request
-curl "https://github.com/Riigess/UAFAssets-updater/archive/refs/heads/main.zip" -o main.zip
+mkdir pallas-py && cd pallas-py
+curl "https://github.com/Riigess/pallas.py/archive/refs/heads/main.zip" -o main.zip
 unzip main.zip
 pip3 install ./
 ```
@@ -23,7 +23,7 @@ You can either use this as a Python 3.9+ module, or as a CLI tool. You can find 
 Good news! The tool supports argparse. Here's a sample of that output as it stands.
 
 ```bash
-$ pallas-request -h
+$ pallas -h
 
 ```
 
@@ -119,7 +119,7 @@ Please note that if you make a request given the above format only will result i
 }
 ```
 
-This is (almost) a real partial from a response for an NLOverrides with locale en_GB. A few of the keys will be modified but should still be present in the final response as well.
+This is (almost) a real partial from a response for an `NLOverrides` 'asset' with locale `en_GB`. A few of the keys will be modified but should still be present in the final response as well.
 
 - `PallasNonce` has been replaced with periods (`.`) to represent an alphanumeric character equal to the length of the original string in place.
 - `_OSVersionCompatibilities` has been truncated to remove all capable devices

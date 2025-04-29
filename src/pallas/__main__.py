@@ -15,12 +15,15 @@ def main_argparse():
     parser.add_argument("--unified-asset-framework", "-u", action="store_true", default=False, help="Fetches the active asset information for the UnifiedAssetFramework (UAF).")
     parser.add_argument("--software-update", "-s", action="store_true", default=False, help="Fetches active software updates for iOS, macOS, tvOS, visionOS, and watchOS.")
     parser.add_argument("--timezone", "-t", action="store_true", default=False, help="Fetches the timezone update property list from Pallas.")
-    parser.add_argument("--custom", "-c", default="", help="Fetches custom body data provided by you! 😁")
+    # parser.add_argument("--custom", "-c", default="", help="Fetches custom request using additional args")
     parser.add_argument("--ios", "-i", default=False, action="store_true", help="--custom (-c) is required for this flag to be available | ")
     parser.add_argument("--mac", "-m", default=False, action="store_true", help="")
     parser.add_argument("--apple-tv", "--tv", default=False, action="store_true", help="")
     parser.add_argument("--vision-pro", "--vision-os", "--xros", "-p", default=False, action="store_true", help="")
     parser.add_argument("--apple-watch", "--watch", "-w", default=False, action="store_true", help="")
+    parser.add_argument("--list-identifiers", "-ids", default=False, action="store_true", help="Lists all available asset identifiers (ex. com.apple.MobileAsset.MacSoftwareUpdate)")
+    parser.add_argument("--identifier", default=[], action="extend", help="Specifies a specific identifier to fetch")
+    parser.add_argument("--os-ver", "-os", default="", action="store_const")
     return parser.parse_known_args()
 
 def get_uaf_assets() -> dict:
@@ -102,5 +105,5 @@ if __name__ == "__main__":
         tz_resp = fetch.get_macos_asset(asset=tz_update, os_train=OSTrainDevicePair.CrystalSeed).assets[0]
         append_assets(assets=[tz_resp], file_name=sqlite_file)
         print()
-    elif args[0].custom:
+    elif 'custom' in args[0] and args[0].custom:
         print("This is curerntly a feature that remains in development. Intended use: \n\t`python -m pallas --custom --ios --train-name=crystalseed --asset=UAFSiriUnderstanding`")
