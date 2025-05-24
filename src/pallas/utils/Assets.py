@@ -59,6 +59,7 @@ class UAFAssets(Enum):
     FMOverrides = "com.apple.MobileAsset.UAF.FM.Overrides"
     FMCodeLM = "com.apple.MobileAsset.UAF.FM.CodeLM"
     FMGenerativeModels = "com.apple.MobileAsset.UAF.FM.GenerativeModels"
+    FMVisual = "com.apple.MobileAsset.UAF.FM.Visual"
     HandwritingSynthesis = "com.apple.MobileAsset.UAF.Handwriting.Synthesis"
     SafariBrowsingAssistant = "com.apple.MobileAsset.UAF.SafariBrowsingAssistant"
     SiriDialogAssets = "com.apple.MobileAsset.UAF.Siri.DialogAssets"
@@ -74,7 +75,6 @@ class UAFAssets(Enum):
     IPComputeHammer = "com.apple.intelligenceplatform.IntelligencePlatformComputeService.hammer"
     IPComputeAssistant = "com.apple.intelligenceplatform.IntelligencePlatformComputeService.assistant"
     UAFPlatform = "com.apple.siri.uaf.platform" #TODO: Create generic "No locale" asset flags
-
 
     def all_assets() -> list:
         to_return = []

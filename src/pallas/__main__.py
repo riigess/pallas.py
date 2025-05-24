@@ -27,22 +27,31 @@ def main_argparse():
     return parser.parse_known_args()
 
 def get_uaf_assets() -> dict:
+    DawnESeed_Assets = [
+        UAFAssets.SiriDialogAssets,
+        UAFAssets.SiriFindMy,
+        UAFAssets.SiriPlatformAssets,
+        UAFAssets.SiriUnderstanding,
+        UAFAssets.SiriUnderstandingASRHammer,
+        UAFAssets.SiriUnderstandingNLOverrides
+    ]
+    CrystalSeed_Assets = Assets.all_assets()
+    del CrystalSeed_Assets['FMVisual']
+    del CrystalSeed_Assets['FMVisual']
     return {
         OSTrainDevicePair.DawnESeed: {
             "Device": DeviceType.iPhone,
             "Audience": Audience.ios_generic,
-            "Assets": [
-                UAFAssets.SiriDialogAssets,
-                UAFAssets.SiriFindMy,
-                UAFAssets.SiriPlatformAssets,
-                UAFAssets.SiriUnderstanding,
-                UAFAssets.SiriUnderstandingASRHammer,
-                UAFAssets.SiriUnderstandingNLOverrides
-            ]
+            "Assets": DawnESeed_Assets
         },
         OSTrainDevicePair.CrystalSeed: {
             "Device": DeviceType.Mac,
             "Audience": Audience.macos_generic,
+            "Assets": CrystalSeed_Assets
+        },
+        OSTrainDevicePair.CrystalESeed: {
+            "Device": DeviceType.Mac,
+            "Audience": Audience.macos_generic(),
             "Assets": Assets.all_assets()
         }
     }
