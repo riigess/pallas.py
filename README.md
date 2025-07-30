@@ -64,7 +64,7 @@ I am personally a little surprised this is even a field in here since the TrainN
 
 ### TrainName
 
-Each OS release will have a few variations on the train names. For instance, DawnESeed, DawnFSeed, GlowSeed, GlowBSeed, etc. These OS names can be found in the device's IPSW BuildManifest.plist. Sometimes leaks for these names ([iOS 19](https://www.macrumors.com/2024/06/30/apple-starts-work-on-ios-19-and-macos-16/), [iOS 18](https://www.macrumors.com/2023/12/20/ios-18-code-four-new-iphone-models/), [iOS 17](https://www.macrumors.com/2023/03/26/ios-17-to-provide-several-most-requested-features/), ...) show up. I'm not able to validate any of this information (I simply don't know), but if a rumor shows up I will add the original source if it's added to this library for any references of pre-release information.
+Each OS release will have a few variations on the train names. For instance, DawnESeed, DawnFSeed, GlowSeed, GlowBSeed, etc. These OS names can be found in the device's IPSW BuildManifest.plist. Sometimes leaks for these names ([iOS 27](https://www.macworld.com/article/2836234/forget-ios-26-take-a-stroll-through-apples-garden-of-os-code-names-for-2027.html), [iOS 26](https://www.macrumors.com/2024/06/30/apple-starts-work-on-ios-19-and-macos-16/), [iOS 18](https://www.macrumors.com/2023/12/20/ios-18-code-four-new-iphone-models/), [iOS 17](https://www.macrumors.com/2023/03/26/ios-17-to-provide-several-most-requested-features/), ...) show up. I'm not able to validate any of this information (I simply don't know), but if a rumor shows up I will add the original source if it's added to this library for any references of pre-release information.
 
 ## Requests
 

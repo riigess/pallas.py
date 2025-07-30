@@ -49,12 +49,6 @@ class Assets(Enum):
     VoiceTriggerAssetsASMac = "com.apple.MobileAsset.VoiceTriggerAssetsASMac"
     VoiceTriggerAssetsStudioDisplay = "com.apple.MobileAsset.VoiceTriggerAssetsStudioDisplay"
 
-    def all_assets() -> list:
-        to_return = []
-        for key in Assets.__dict__["_member_names_"]:
-            to_return.append(UAFAssets.__dict__[key])
-        return to_return
-
 class UAFAssets(Enum):
     FMOverrides = "com.apple.MobileAsset.UAF.FM.Overrides"
     FMCodeLM = "com.apple.MobileAsset.UAF.FM.CodeLM"
@@ -76,8 +70,9 @@ class UAFAssets(Enum):
     IPComputeAssistant = "com.apple.intelligenceplatform.IntelligencePlatformComputeService.assistant"
     UAFPlatform = "com.apple.siri.uaf.platform" #TODO: Create generic "No locale" asset flags
 
-    def all_assets() -> list:
+class EnumUtils:
+    def list_members(self, enum:Enum):
         to_return = []
-        for key in UAFAssets.__dict__["_member_names_"]:
-            to_return.append(UAFAssets.__dict__[key])
+        for key in enum.__dict__["_member_names_"]:
+            to_return.append(enum.__dict__[key])
         return to_return

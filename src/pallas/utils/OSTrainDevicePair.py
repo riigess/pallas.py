@@ -10,10 +10,14 @@ class OSTrainDevicePair(Enum):
     DawnFSeed = "DawnFSeed", "17.5", DeviceType.iPhone, DeviceType.iPad
     DawnGSeed = "DawnGSeed", "17.6", DeviceType.iPhone, DeviceType.iPad
     CrystalSeed = "CrystalSeed", "18.0", DeviceType.iPhone, DeviceType.iPad
-    CrystalBSeed = "CrystalBSeed", "18.1", DeviceType.iPhone, DeviceType.iPad #Reasonable assumption there might be a B Seed
-    CrystalCSeed = "CrystalCSeed", "18.2", DeviceType.iPhone, DeviceType.iPad #Setting up based on past OSes..
+    CrystalBSeed = "CrystalBSeed", "18.1", DeviceType.iPhone, DeviceType.iPad
+    CrystalCSeed = "CrystalCSeed", "18.2", DeviceType.iPhone, DeviceType.iPad
     CrystalDSeed = "CrystalDSeed", "18.3", DeviceType.iPhone, DeviceType.iPad
-    CrystalESeed = "CrystalESeed", "18.4", DeviceType.iPhone, DeviceType.iPad #Pausing at ESeed based on laziness
+    CrystalESeed = "CrystalESeed", "18.4", DeviceType.iPhone, DeviceType.iPad
+    CrystalFSeed = "CrystalFSeed", "18.5", DeviceType.iPhone, DeviceType.iPad
+    CrystalGSeed = "CrystalGSeed", "18.6", DeviceType.iPhone, DeviceType.iPad
+    CrystalHSeed = "CrystalHSeed", "18.7", DeviceType.iPhone, DeviceType.iPad
+    CheerSeed = "CheerSeed", "26.0", DeviceType.iPhone, DeviceType.iPad
     LighthouseSeed = "LighthouseSeed", "10.0", DeviceType.Watch
     LighthouseBSeed = "LighthouseBSeed", "10.1", DeviceType.Watch
     LighthouseCSeed = "LighthouseCSeed", "10.2", DeviceType.Watch
@@ -27,6 +31,10 @@ class OSTrainDevicePair(Enum):
     MoonstoneCSeed = "MoonstoneCSeed", "11.2", DeviceType.Watch
     MoonstoneDSeed = "MoonstoneDSeed", "11.3", DeviceType.Watch
     MoonstoneESeed = "MoonstoneESeed", "11.4", DeviceType.Watch
+    MoonstoneFSeed = "MoonstoneFSeed", "11.5", DeviceType.Watch
+    MoonstoneGSeed = "MoonstoneGSeed", "11.6", DeviceType.Watch
+    MoonstoneHSeed = "MoonstoneHSeed", "11.7", DeviceType.Watch
+    NepaliSeed = "NepaliSeed", "12.0", DeviceType.Watch
     SunburstSeed = "SunburstSeed", "14.0", DeviceType.Mac
     SunburstBSeed = "SunburstBSeed", "14.1", DeviceType.Mac
     SunburstCSeed = "SunburstCSeed", "14.2", DeviceType.Mac
@@ -40,6 +48,10 @@ class OSTrainDevicePair(Enum):
     GlowCSeed = "GlowCSeed", "15.2", DeviceType.Mac
     GlowDSeed = "GlowDSeed", "15.3", DeviceType.Mac
     GlowESeed = "GlowESeed", "15.4", DeviceType.Mac
+    GlowFSeed = "GlowFSeed", "15.5", DeviceType.Mac
+    GlowGSeed = "GlowGSeed", "15.6", DeviceType.Mac
+    GlowHSeed = "GlowHSeed", "15.7", DeviceType.Mac
+    LuckSeed = "LuckSeed", "16.0", DeviceType.Mac
     BorealisSeed = "BorealisSeed", "1.0", DeviceType.Vision_Pro
     BorealisESeed = "BorealisESeed", "1.1", DeviceType.Vision_Pro
     BorealisFSeed = "BorealisFSeed", "1.2", DeviceType.Vision_Pro
@@ -49,6 +61,10 @@ class OSTrainDevicePair(Enum):
     ConstellationCSeed = "ConstellationCSeed", "2.2", DeviceType.Vision_Pro
     ConstellationDSeed = "ConstellationDSeed", "2.3", DeviceType.Vision_Pro
     ConstellationESeed = "ConstellationESeed", "2.4", DeviceType.Vision_Pro
+    ConstellationFSeed = "ConstellationFSeed", "2.5", DeviceType.Vision_Pro
+    ConstellationGSeed = "ConstellationGSeed", "2.6", DeviceType.Vision_Pro
+    ConstellationHSeed = "ConstellationHSeed", "2.7", DeviceType.Vision_Pro
+    DiscoverySeed = "DiscoverySeed", "26.0", DeviceType.Vision_Pro
     Null = "Null", DeviceType.TV
 
     def lookup(ostdp):
