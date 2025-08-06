@@ -7,11 +7,7 @@ A library to support making requests to Apple's Pallas server (gdmf.apple.com an
 Using pip
 
 ```bash
-cd ~/Downloads/
-mkdir pallas-py && cd pallas-py
-curl "https://github.com/Riigess/pallas.py/archive/refs/heads/main.zip" -o main.zip
-unzip main.zip
-pip3 install ./
+pip3 install pallas.py
 ```
 
 ## Usage
@@ -24,7 +20,6 @@ Good news! The tool supports argparse. Here's a sample of that output as it stan
 
 ```bash
 $ pallas -h
-
 ```
 
 ## Acknowledgements
