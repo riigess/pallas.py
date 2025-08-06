@@ -1,5 +1,5 @@
 [project]
-name = "pallas"
+name = "pallas.py"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">= 3.9"
