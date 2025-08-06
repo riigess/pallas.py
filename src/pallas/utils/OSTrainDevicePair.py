@@ -34,7 +34,7 @@ class OSTrainDevicePair(Enum):
     MoonstoneFSeed = "MoonstoneFSeed", "11.5", DeviceType.Watch
     MoonstoneGSeed = "MoonstoneGSeed", "11.6", DeviceType.Watch
     MoonstoneHSeed = "MoonstoneHSeed", "11.7", DeviceType.Watch
-    NepaliSeed = "NepaliSeed", "12.0", DeviceType.Watch
+    NepaliSeed = "NepaliSeed", "26.0", DeviceType.Watch
     SunburstSeed = "SunburstSeed", "14.0", DeviceType.Mac
     SunburstBSeed = "SunburstBSeed", "14.1", DeviceType.Mac
     SunburstCSeed = "SunburstCSeed", "14.2", DeviceType.Mac
@@ -51,7 +51,7 @@ class OSTrainDevicePair(Enum):
     GlowFSeed = "GlowFSeed", "15.5", DeviceType.Mac
     GlowGSeed = "GlowGSeed", "15.6", DeviceType.Mac
     GlowHSeed = "GlowHSeed", "15.7", DeviceType.Mac
-    LuckSeed = "LuckSeed", "16.0", DeviceType.Mac
+    LuckSeed = "LuckSeed", "26.0", DeviceType.Mac
     BorealisSeed = "BorealisSeed", "1.0", DeviceType.Vision_Pro
     BorealisESeed = "BorealisESeed", "1.1", DeviceType.Vision_Pro
     BorealisFSeed = "BorealisFSeed", "1.2", DeviceType.Vision_Pro
@@ -65,7 +65,7 @@ class OSTrainDevicePair(Enum):
     ConstellationGSeed = "ConstellationGSeed", "2.6", DeviceType.Vision_Pro
     ConstellationHSeed = "ConstellationHSeed", "2.7", DeviceType.Vision_Pro
     DiscoverySeed = "DiscoverySeed", "26.0", DeviceType.Vision_Pro
-    Null = "Null", DeviceType.TV
+    Null = "Null", "26.0", DeviceType.TV
 
     def lookup(ostdp):
         return ostdp.value[1]

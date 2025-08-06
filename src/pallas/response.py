@@ -14,3 +14,8 @@ class Response:
             self.assets.append(Asset(a_dict=asset))
         self.asset_set_id = response.get("AssetSetId", "")
         self.asset_audience = response.get("AssetAudience", "")
+        self.raw_response = response
+        if 'Assets' in self.raw_response:
+            for i in range(len(self.raw_response['Assets'])):
+                if '_AssetReceipt' in self.raw_response['Assets'][i]:
+                    del self.raw_response['Assets'][i]['_AssetReceipt']
