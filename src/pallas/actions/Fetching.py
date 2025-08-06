@@ -14,7 +14,7 @@ class Fetching:
         self.url = url
 
     def __fetch__(self, asset:Union[Assets, UAFAssets], os_train:OSTrainDevicePair, audience:Audience, device_type:DeviceType) -> Response:
-        if not self.pr:
+        if "pr" not in self.__dict__:
             self.pr = PallasRequest(url=self.url)
         temp = self.pr.request(asset_audience=audience, asset_type=asset, device_type=device_type, train_name=os_train)
         temp = Response(response=temp)

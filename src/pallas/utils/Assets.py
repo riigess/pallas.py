@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Union, Optional
 
 class Assets(Enum):
     AppleKeyServicesCRL2 = "com.apple.MobileAsset.AppleKeyServicesCRL2"
@@ -49,16 +50,11 @@ class Assets(Enum):
     VoiceTriggerAssetsASMac = "com.apple.MobileAsset.VoiceTriggerAssetsASMac"
     VoiceTriggerAssetsStudioDisplay = "com.apple.MobileAsset.VoiceTriggerAssetsStudioDisplay"
 
-    def all_assets() -> list:
-        to_return = []
-        for key in Assets.__dict__["_member_names_"]:
-            to_return.append(UAFAssets.__dict__[key])
-        return to_return
-
 class UAFAssets(Enum):
     FMOverrides = "com.apple.MobileAsset.UAF.FM.Overrides"
     FMCodeLM = "com.apple.MobileAsset.UAF.FM.CodeLM"
     FMGenerativeModels = "com.apple.MobileAsset.UAF.FM.GenerativeModels"
+    FMVisual = "com.apple.MobileAsset.UAF.FM.Visual"
     HandwritingSynthesis = "com.apple.MobileAsset.UAF.Handwriting.Synthesis"
     SafariBrowsingAssistant = "com.apple.MobileAsset.UAF.SafariBrowsingAssistant"
     SiriDialogAssets = "com.apple.MobileAsset.UAF.Siri.DialogAssets"
@@ -71,9 +67,27 @@ class UAFAssets(Enum):
     SummarizationKit = "com.apple.MobileAsset.UAF.SummarizationKitConfiguration"
     IFPlanner = "com.apple.if.planner"
     IFPlannerOverrides = "com.apple.if.planner.overrides"
+    IPComputeHammer = "com.apple.intelligenceplatform.IntelligencePlatformComputeService.hammer"
+    IPComputeAssistant = "com.apple.intelligenceplatform.IntelligencePlatformComputeService.assistant"
+    UAFPlatform = "com.apple.siri.uaf.platform" #TODO: Create generic "No locale" asset flags
 
-    def all_assets() -> list:
+class EnumUtils:
+    def list_members(self, enum:Enum):
         to_return = []
-        for key in UAFAssets.__dict__["_member_names_"]:
-            to_return.append(UAFAssets.__dict__[key])
+        for key in enum.__dict__["_member_names_"]:
+            to_return.append(enum.__dict__[key])
         return to_return
+
+    def lookup(self, value:str) -> Optional[Union[UAFAssets, Assets]]:
+        if '.' in value:
+            value = value.split('.')[-1]
+        #Check if requested value is in UAFAssets
+        lowercased_assets = {asset.lower():asset for asset in UAFAssets.__dict__["_member_names_"]}
+        if value.lower() in lowercased_assets:
+            return UAFAssets.__dict__[lowercased_assets[value.lower()]]
+
+        #Check if requested value is in Assets
+        lowercased_assets = {asset.lower():asset for asset in Assets.__dict__["_member_name_"]}
+        if value.lower() in lowercased_assets:
+            return Assets.__dict__[lowercased_assets[value.lower()]]
+        return None
